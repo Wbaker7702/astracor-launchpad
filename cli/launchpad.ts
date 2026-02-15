@@ -1,17 +1,25 @@
-import { ethers } from "hardhat";
+import { network } from "hardhat";
 import fs from "fs";
 
 async function main() {
-  const cmd = process.argv[2]; // create | fund
-  const file = process.argv[3]; // launches/foo.json
+  const rawArgs = process.argv.slice(2);
+  const scriptArgIndex = rawArgs.findIndex(
+    (arg) => arg.endsWith("launchpad.ts") || arg.endsWith("launchpad.js")
+  );
+  const cliArgs = (scriptArgIndex >= 0 ? rawArgs.slice(scriptArgIndex + 1) : rawArgs)
+    .filter((arg) => arg !== "--");
+  const [cmd, file] = cliArgs; // create|fund, launches/foo.json
 
   if (!cmd || !file) {
     console.log("Usage:");
     console.log("  npx hardhat run cli/launchpad.ts --network sepolia create launches/yourlaunch.json");
     console.log("  npx hardhat run cli/launchpad.ts --network sepolia fund   launches/yourlaunch.json");
+    console.log("  npx hardhat run cli/launchpad.ts --network sepolia -- create launches/yourlaunch.json");
+    console.log("  npx hardhat run cli/launchpad.ts --network sepolia -- fund   launches/yourlaunch.json");
     process.exit(1);
   }
 
+  const { ethers } = await network.connect();
   const cfg = JSON.parse(fs.readFileSync(file, "utf-8"));
   const [deployer] = await ethers.getSigners();
 

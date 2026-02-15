@@ -1,14 +1,15 @@
-import hre from "hardhat";
+import { network } from "hardhat";
 
 async function main() {
-  const [deployer] = await hre.ethers.getSigners();
+  const { ethers } = await network.connect();
+  const [deployer] = await ethers.getSigners();
   console.log("Deployer:", deployer.address);
 
   const fs = await import("fs");
   const params = JSON.parse(fs.readFileSync("deployment.json", "utf-8"));
 
   // Deploy Token
-  const Token = await hre.ethers.getContractFactory(params.contractName);
+  const Token = await ethers.getContractFactory(params.contractName);
   const token = await Token.deploy(
     deployer.address,
     params.tokenName,
@@ -19,7 +20,7 @@ async function main() {
   const tokenAddr = await token.getAddress();
   console.log("Token:", tokenAddr);
 
-  const supplyBase = hre.ethers.parseUnits(
+  const supplyBase = ethers.parseUnits(
     params.initialSupply.toString(),
     params.decimals
   );
@@ -30,7 +31,7 @@ async function main() {
   const start = now + params.saleStartDelaySec;
   const end = start + params.saleDurationSec;
 
-  const Sale = await hre.ethers.getContractFactory("LaunchpadSale");
+  const Sale = await ethers.getContractFactory("LaunchpadSale");
 
   const sale = await Sale.deploy(
     deployer.address,
@@ -48,7 +49,7 @@ async function main() {
 
   console.log("Sale:", saleAddr);
 
-  const capBase = hre.ethers.parseUnits(
+  const capBase = ethers.parseUnits(
     params.saleCapTokens.toString(),
     params.decimals
   );
