@@ -1,21 +1,19 @@
 {
   "name": "astracor-launchpad",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "scripts": {
-    "build": "hardhat compile",
-    "test": "hardhat test",
-    "deploy:sepolia": "hardhat run scripts/deploy.ts --network sepolia"
+    "lint": "eslint .",
+    "test": "node --test",
+    "build": "echo build step",
+    "release": "semantic-release"
   },
   "devDependencies": {
-    "@nomicfoundation/hardhat-ethers": "^4.0.4",
-    "dotenv": "^16.4.5",
-    "hardhat": "^3.1.8",
-    "ts-node": "^10.9.2",
-    "typescript": "^5.5.4"
-  },
-  "dependencies": {
-    "@openzeppelin/contracts": "^5.4.0"
+    "eslint": "^9.0.0",
+    "semantic-release": "^23.0.0",
+    "@semantic-release/changelog": "^6.0.0",
+    "@semantic-release/git": "^10.0.0",
+    "@semantic-release/github": "^9.0.0"
   }
 }
