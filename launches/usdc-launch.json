@@ -1,0 +1,10 @@
+{
+  "factory": "PASTE_FACTORY_ADDRESS_HERE",
+  "token": "PASTE_TOKEN_ADDRESS_HERE",
+  "usdc": "0x65aFADD39029741B3b8f0756952C74678c9cEC93",
+  "tokenDecimals": 18,
+  "priceUSDCPerToken": 2000000,
+  "capTokensHuman": 10000000,
+  "startTime": 1730000000,
+  "endTime": 1730600000
+}

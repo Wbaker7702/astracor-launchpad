@@ -1,0 +1,12 @@
+{
+  "contractName": "Astracor",
+  "tokenName": "Astracor",
+  "tokenSymbol": "ASTR",
+  "decimals": 18,
+  "initialSupply": 100000000,
+  "priceUSDCPerToken": 2000000,
+  "saleCapTokens": 10000000,
+  "saleStartDelaySec": 60,
+  "saleDurationSec": 604800,
+  "usdcAddress": "0x65aFADD39029741B3b8f0756952C74678c9cEC93"
+}
