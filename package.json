@@ -7,13 +7,14 @@
     "lint": "eslint .",
     "test": "node --test",
     "build": "echo build step",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
   },
   "devDependencies": {
-    "eslint": "^9.0.0",
-    "semantic-release": "^23.0.0",
     "@semantic-release/changelog": "^6.0.0",
     "@semantic-release/git": "^10.0.0",
-    "@semantic-release/github": "^9.0.0"
+    "@semantic-release/github": "^9.0.0",
+    "eslint": "^9.0.0",
+    "semantic-release": "^23.0.0"
   }
 }
