@@ -1,7 +1,8 @@
-import hre from "hardhat";
+import { network } from "hardhat";
 
 async function main() {
-  const [deployer] = await hre.ethers.getSigners();
+  const { ethers } = await network.connect();
+  const [deployer] = await ethers.getSigners();
   console.log("Deployer:", deployer.address);
 
   // Sepolia USDC (Circle)
@@ -14,7 +15,7 @@ async function main() {
   // 2% fee
   const FEE_BPS = 200;
 
-  const Factory = await hre.ethers.getContractFactory("LaunchpadFactory");
+  const Factory = await ethers.getContractFactory("LaunchpadFactory");
   const factory = await Factory.deploy(deployer.address, USDC, USDC_DECIMALS, TREASURY, FEE_BPS);
   await factory.waitForDeployment();
 
